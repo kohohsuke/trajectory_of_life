@@ -1,24 +1,48 @@
-# README
+# DB設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
 
-Things you may want to cover:
+| Column             | Type   | Options                   |
+| -------------------| ------ | ------------------------- |
+| nickname           | string | null: false, unique: true |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :companies
+- has_many :comments
 
-* Configuration
+## companiesテーブル
 
-* Database creation
+| Column         | Type       | Options                        |
+| -------------- | ---------- | ------------------------------ |
+| name           | string     | null: false                    |
+| post_code      | string     | null: false                    |
+| address        | string     | null: false                    |
+| website        | string     | null: false                    |
+| category_id    | integer    | null: false                    |
+| occupation_id  | integer    | null: false                    |
+| characteristic | text       | null: false                    |
+| first_reason   | string     | null: false                    |
+| second_reason  | string     | null: false                    |
+| third_reason   | string     | null: false                    |
+| user           | references | null: false, foreign_key: true |
 
-* Database initialization
+### Association
 
-* How to run the test suite
+- belongs_to :user
+- has_many :comments
 
-* Services (job queues, cache servers, search engines, etc.)
+## commentsテーブル
 
-* Deployment instructions
+| Column     | Type       | Options                        |
+| ---------- | ---------- | ------------------------------ |
+| text       | text       | null: false                    |
+| user_id    | references | null: false, foreign_key: true |
+| company_id | references | null: false, foreign_key: true |
 
-* ...
+### Association
+
+- belongs_to :user
+- belongs_to :company

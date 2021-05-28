@@ -7,6 +7,6 @@ class User < ApplicationRecord
   validates_format_of :password, with: PASSWORD_REGEX
 
   validates :nickname, presence: true
-  validates :nickname, uniqueness: true
+  validates :nickname, uniqueness: { case_sensitive: true }
 
 end

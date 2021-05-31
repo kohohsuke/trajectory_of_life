@@ -2,7 +2,7 @@ class CompaniesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @company = Company.order('created_at DESC')
+    @companies = Company.order('created_at DESC')
   end
 
   def new

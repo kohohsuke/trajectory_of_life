@@ -1,0 +1,18 @@
+<%= form_with model: @company, url: companies_path, local: true do |f| %>
+
+<%= render 'layouts/error_messages', model: @company %>
+
+  <div>
+    <div><%= f.text_field :name, placeholder: "会社名" %></div>
+    <div><%= f.text_field :post_code, placeholder: "郵便番号（000-0000）" %></div>
+    <div><%= f.text_field :address, placeholder: "本社所在地" %></div>
+    <div><%= f.text_field :website, placeholder: "ホームページのURL" %></div>
+    <div><%= f.collection_select(:category_id, Category.all, :id, :name, {}) %></div>
+    <div><%= f.collection_select(:occupation_id, Occupation.all, :id, :name, {}) %></div>
+    <div><%= f.text_area :characteristic, placeholder: "特徴" %></div>
+    <div><%= f.text_field :first_reason, placeholder: "理由①" %></div>
+    <div><%= f.text_field :second_reason, placeholder: "理由②" %></div>
+    <div><%= f.text_field :third_reason, placeholder: "理由③" %></div>
+    <div><%= f.submit "投稿する"%></div>
+  </div>
+<% end %>

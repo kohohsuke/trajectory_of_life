@@ -21,6 +21,6 @@ class Company < ApplicationRecord
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :occupation
-  belongs_to_active_hash :category_id
+  belongs_to_active_hash :category
 
 end

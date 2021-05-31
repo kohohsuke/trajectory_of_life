@@ -1,4 +1,4 @@
-class Category < ActiveHash::belongs_to_active_hash
+class Category < ActiveHash::Base
   self.data = [
     { id: 1, name: '---' },
     { id: 2, name: '自社開発' },

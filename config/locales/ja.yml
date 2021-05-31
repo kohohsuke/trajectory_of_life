@@ -3,3 +3,14 @@ ja:
     attributes:
       user:
         nickname: ニックネーム
+      company:
+        name: 会社名
+        post_code: 郵便番号
+        address: 本社所在地
+        website: URL
+        category_id: カテゴリー
+        occupation_id: 職種
+        characteristic: 特徴
+        first_reason: 理由①
+        second_reason: 理由②
+        third_reason: 理由③

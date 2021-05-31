@@ -1,5 +1,7 @@
 <%= form_with model: @company, url: companies_path, local: true do |f| %>
 
+<%= render 'layouts/error_messages', model: @company %>
+
   <div>
     <div><%= f.text_field :name, placeholder: "会社名" %></div>
     <div><%= f.text_field :post_code, placeholder: "郵便番号（000-0000）" %></div>

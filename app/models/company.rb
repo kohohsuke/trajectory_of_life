@@ -12,7 +12,7 @@ class Company < ApplicationRecord
     validates :second_reason
     validates :third_reason
     
-    with_options numericality: { other_than: 1, message: 'を選択してください' } do
+    with_options numericality: { other_than: 0, message: 'を選択してください' } do
       validates :category_id
       validates :occupation_id
     end

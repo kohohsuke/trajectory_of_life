@@ -15,3 +15,12 @@
 
 <%= link_to '編集する', edit_company_path(@company.id), method: :get %>
 <%= link_to '削除する', company_path(@company.id), method: :delete %>
+
+<%= form_with model: [@company, @comment], local: true do |f| %>
+  <%= f.text_area :text, placeholder: "コメントする", rows: "2" %>
+  <%= f.submit "送信する" %>
+<% end %>
+<p>コメント一覧</p>
+<% @comments.each do |comment| %>
+  <%= comment.text %>
+<% end %>

@@ -20,6 +20,8 @@ class CompaniesController < ApplicationController
 
   def show
     @company = Company.find(params[:id])
+    @comment = Comment.new
+    @comments = @company.comments.includes(:user)
   end
 
   def edit
@@ -37,11 +39,8 @@ class CompaniesController < ApplicationController
 
   def destroy
     @company = Company.find(params[:id])
-    if @company.destroy
-      redirect_to root_path
-    else
-      render :show
-    end
+    @company.destroy
+    redirect_to root_path
   end
 
   private

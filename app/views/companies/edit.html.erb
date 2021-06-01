@@ -1,3 +1,4 @@
+編集ページ
 <%= form_with model: @company, local: true do |f| %>
 
 <%= render 'layouts/error_messages', model: @company %>
@@ -13,6 +14,6 @@
     <div><%= f.text_field :first_reason, placeholder: "理由①" %></div>
     <div><%= f.text_field :second_reason, placeholder: "理由②" %></div>
     <div><%= f.text_field :third_reason, placeholder: "理由③" %></div>
-    <div><%= f.submit "投稿する"%></div>
+    <div><%= f.submit "編集する"%></div>
   </div>
 <% end %>

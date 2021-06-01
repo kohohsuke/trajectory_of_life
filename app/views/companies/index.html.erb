@@ -4,16 +4,9 @@
 <%= link_to '投稿する', new_company_path %>
 
 <% @companies.each do |company| %>
-  <ul>
-    <li><%= company.name %></li>
-    <li><%= company.post_code %></li>
-    <li><%= company.address %></li>
-    <li><%= company.website %></li>
-    <li><%= company.category.name %></li>
-    <li><%= company.occupation.name %></li>
-    <li><%= company.characteristic %></li>
-    <li><%= company.first_reason %></li>
-    <li><%= company.second_reason %></li>
-    <li><%= company.third_reason %></li>
-  </ul>
+  <%= link_to company_path(company.id) do%>
+    <ul>
+      <li><%= company.name %></li>
+    </ul>
+  <% end %>
 <% end %>

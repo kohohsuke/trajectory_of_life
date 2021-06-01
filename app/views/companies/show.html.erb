@@ -11,3 +11,5 @@
   <li><%= @company.second_reason %></li>
   <li><%= @company.third_reason %></li>
 </ul>
+
+<%= link_to '編集する', edit_company_path(@company.id), method: :get %>

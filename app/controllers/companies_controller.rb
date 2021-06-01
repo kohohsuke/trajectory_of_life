@@ -20,6 +20,8 @@ class CompaniesController < ApplicationController
 
   def show
     @company = Company.find(params[:id])
+    @comment = Comment.new
+    @comments = @company.comments.includes(:user)
   end
 
   def edit

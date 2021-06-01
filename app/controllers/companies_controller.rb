@@ -37,11 +37,8 @@ class CompaniesController < ApplicationController
 
   def destroy
     @company = Company.find(params[:id])
-    if @company.destroy
-      redirect_to root_path
-    else
-      render :show
-    end
+    @company.destroy
+    redirect_to root_path
   end
 
   private

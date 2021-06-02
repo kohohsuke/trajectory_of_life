@@ -1,5 +1,6 @@
 ようこそ！
-<%= link_to "#{current_user.nickname}さん", user_path(current_user.id) %>
+<%= link_to "#{current_user.nickname}", user_path(current_user.id) %>
+さん
 
 <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
 <%= link_to '投稿する', new_company_path %>

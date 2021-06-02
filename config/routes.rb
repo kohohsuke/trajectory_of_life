@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   resources :companies do
     resources :comments, only: :create
   end
+  resources :users, only: :show
 
 end

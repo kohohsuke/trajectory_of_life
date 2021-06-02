@@ -6,7 +6,7 @@
   <li><%= @company.name %></li>
   <li><%= @company.post_code %></li>
   <li><%= @company.address %></li>
-  <li><%= @company.website %></li>
+  <li><%= link_to "#{@company.website}", "#{@company.website}" %></li>
   <li><%= @company.category.name %></li>
   <li><%= @company.occupation.name %></li>
   <li><%= @company.characteristic %></li>

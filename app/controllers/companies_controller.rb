@@ -1,5 +1,6 @@
 class CompaniesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_company, except: [:index, :new, :create]
 
   def index
     @companies = Company.order('created_at DESC')
@@ -19,17 +20,14 @@ class CompaniesController < ApplicationController
   end
 
   def show
-    @company = Company.find(params[:id])
     @comment = Comment.new
     @comments = @company.comments.includes(:user)
   end
 
   def edit
-    @company = Company.find(params[:id])
   end
 
   def update
-    @company = Company.find(params[:id])
     if @company.update(company_params)
       redirect_to company_path(@company.id)
     else
@@ -38,7 +36,6 @@ class CompaniesController < ApplicationController
   end
 
   def destroy
-    @company = Company.find(params[:id])
     @company.destroy
     redirect_to root_path
   end
@@ -47,6 +44,10 @@ class CompaniesController < ApplicationController
   def company_params
     params.require(:company).permit(:name, :post_code, :address, :website, :category_id, :occupation_id,
                                     :characteristic, :first_reason, :second_reason, :third_reason).merge(user_id: current_user.id)
+  end
+
+  def set_company
+    @company = Company.find(params[:id])
   end
 
 end

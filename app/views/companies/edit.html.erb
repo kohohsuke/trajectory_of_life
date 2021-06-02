@@ -1,5 +1,7 @@
 編集ページ
 
+<%= link_to "もどる", company_path(@company.id) %>
+
 <%= form_with model: @company, local: true do |f| %>
 
 <%= render 'layouts/error_messages', model: @company %>

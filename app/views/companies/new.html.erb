@@ -1,5 +1,7 @@
 新規投稿ページ
 
+<%= link_to "もどる", root_path %>
+
 <%= form_with model: @company, local: true do |f| %>
 
 <%= render 'layouts/error_messages', model: @company %>

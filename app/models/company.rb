@@ -30,9 +30,9 @@ class Company < ApplicationRecord
       categories = all
       category_graph_data = {}
       categories.each_with_index do |data, index|
-        category_graph_data = { data.category.name => 1} if index.zero?
+        category_graph_data = { data.category.name => 0} if index.zero?
         if category_graph_data.key?(data.category.name)
-          category_graph_data[data.category.name] += 1
+          category_graph_data[data.category.name] += 1 
         else
           category_graph_data[data.category.name] = 1
         end

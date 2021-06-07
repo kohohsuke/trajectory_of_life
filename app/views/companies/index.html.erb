@@ -1,11 +1,16 @@
 <%= render "shared/header" %>
 
-<% @companies.each do |company| %>
-  <%= link_to company_path(company.id) do%>
-    <ul>
-      <li><%= company.name %></li>
-    </ul>
-  <% end %>
-<% end %>
+<h2>会社情報一覧</h2>
+
+<div class="box">
+  <div class="box2">
+    <% @companies.each do |company| %>
+      <%= link_to company_path(company.id) do%>
+        <p><%= company.name %></p>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
 
 <%= render "shared/footer" %>

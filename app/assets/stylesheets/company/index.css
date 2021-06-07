@@ -1,0 +1,21 @@
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: scroll;
+}
+
+.box2 {
+  padding: 0.5em 1em;
+  margin: 0.5em 0;
+  font-size: 20px;
+  font-weight: bold;
+  color: #6091d3;
+  background: #FFF;
+  border: solid 3px #6091d3;
+  border-radius: 10px;
+}
+.box2 p {
+  margin: 20px 0; 
+}
+

@@ -1,26 +1,86 @@
 <%= render "shared/header" %>
 
-新規投稿ページ
+<h2>新規投稿ページ</h2>
 
-<%= link_to "もどる", root_path %>
+<div class="container">
+  <%= form_with model: @company, local: true do |f| %>
 
-<%= form_with model: @company, local: true do |f| %>
+  <%= render 'layouts/error_messages', model: @company %>
 
-<%= render 'layouts/error_messages', model: @company %>
+    <div class="form-text-wrap">
+        <label class="form-text">会社名</label>
+      </div>
+      <div class="form-group">
+        <%= f.text_field :name, placeholder: "例）株式会社hoge", class: "field" %>
+      </div>
 
-  <div>
-    <div><%= f.text_field :name, placeholder: "会社名" %></div>
-    <div><%= f.text_field :post_code, placeholder: "郵便番号（000-0000）" %></div>
-    <div><%= f.text_field :address, placeholder: "本社所在地" %></div>
-    <div><%= f.text_field :website, placeholder: "ホームページのURL" %></div>
-    <div><%= f.collection_select(:category_id, Category.all, :id, :name, {}) %></div>
-    <div><%= f.collection_select(:occupation_id, Occupation.all, :id, :name, {}) %></div>
-    <div><%= f.text_area :characteristic, placeholder: "特徴" %></div>
-    <div><%= f.text_field :first_reason, placeholder: "理由①" %></div>
-    <div><%= f.text_field :second_reason, placeholder: "理由②" %></div>
-    <div><%= f.text_field :third_reason, placeholder: "理由③" %></div>
-    <div><%= f.submit "投稿する"%></div>
-  </div>
-<% end %>
+      <div class="form-text-wrap">
+        <label class="form-text">郵便番号</label>
+      </div>
+      <div class="form-group">
+        <%= f.text_field :post_code, placeholder: "(000-0000)", class: "field" %>
+      </div>
+
+      <div class="form-text-wrap">
+        <label class="form-text">本社所在地</label>
+      </div>
+      <div class="form-group">
+        <%= f.text_field :address, placeholder: "例）東京都千代田区千代田1-1", class: "field" %>
+      </div>
+
+      <div class="form-text-wrap">
+        <label class="form-text">ホームページのURL</label>
+      </div>
+      <div class="form-group">
+        <%= f.text_field :website, placeholder: "例）http://~~~~", class: "field" %>
+      </div>
+
+      <div class="form-text-wrap">
+        <label class="form-text">カテゴリー</label>
+      </div>
+      <div class="form-group">
+        <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class: "field"}) %>
+      </div>
+
+      <div class="form-text-wrap">
+        <label class="form-text">職種</label>
+      </div>
+      <div class="form-group">
+        <div><%= f.collection_select(:occupation_id, Occupation.all, :id, :name, {}, {class: "field"}) %></div>
+      </div>
+
+      <div class="form-text-wrap">
+        <label class="form-text">特徴</label>
+      </div>
+      <div class="form-group">
+        <div><%= f.text_area :characteristic, rows: 7, maxlength: "1000", placeholder: "特徴を記入してください", class: "companies-text" %></div>
+      </div>
+
+      <div class="form-text-wrap">
+        <label class="form-text">理由①</label>
+      </div>
+      <div class="form-group">
+        <div><%= f.text_field :first_reason, placeholder: "例）福利厚生が整っている", class: "field" %></div>
+      </div>
+
+      <div class="form-text-wrap">
+        <label class="form-text">理由②</label>
+      </div>
+      <div class="form-group">
+        <div><%= f.text_field :second_reason, placeholder: "例）給料が良い", class: "field" %></div>
+      </div>
+
+      <div class="form-text-wrap">
+        <label class="form-text">理由③</label>
+      </div>
+      <div class="form-group">
+        <div><%= f.text_field :third_reason, placeholder: "例）社風に共感できる", class: "field" %></div>
+      </div>
+
+      <div class="register-btn">
+        <%= f.submit "投稿する", class: "register-blue-btn" %>
+      </div>
+  <% end %>
+</div>
 
 <%= render "shared/footer" %>

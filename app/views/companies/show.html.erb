@@ -1,32 +1,83 @@
 <%= render "shared/header" %>
 
-詳細ページ
+<h2>詳細ページ</h2>
 
-<%= link_to "もどる", root_path %>
+<div class="box">
+  <div class="company-box">
+    <table>
+      <tr>
+        <th>会社名</th>
+        <td><%= @company.name %></td>
+      </tr>
+      <tr>
+        <th>郵便番号</th>
+        <td><%= @company.post_code %></td>
+      </tr>
+      <tr>
+        <th>本社住所</th>
+        <td><%= @company.address %></td>
+      </tr>
+      <tr>
+        <th>ホームページのURL</th>
+        <td><%= link_to "#{@company.website}", "#{@company.website}", class: "URL-link" %></td>
+      </tr>
+      <tr>
+        <th>カテゴリー</th>
+        <td><%= @company.category.name %></td>
+      </tr>
+      <tr>
+        <th>特徴</th>
+        <td><%= @company.characteristic %></td>
+      </tr>
+      <tr>
+        <th>理由①</th>
+        <td><%= @company.first_reason %></td>
+      </tr>
+      <tr>
+        <th>理由②</th>
+        <td><%= @company.second_reason %></td>
+      </tr>
+      <tr>
+        <th>理由③</th>
+        <td><%= @company.third_reason %></td>
+      </tr>
+    </table>
+  </div>
+</div>
 
-<ul>
-  <li><%= @company.name %></li>
-  <li><%= @company.post_code %></li>
-  <li><%= @company.address %></li>
-  <li><%= link_to "#{@company.website}", "#{@company.website}" %></li>
-  <li><%= @company.category.name %></li>
-  <li><%= @company.occupation.name %></li>
-  <li><%= @company.characteristic %></li>
-  <li><%= @company.first_reason %></li>
-  <li><%= @company.second_reason %></li>
-  <li><%= @company.third_reason %></li>
-</ul>
 
-<%= link_to '編集する', edit_company_path(@company.id), method: :get %>
-<%= link_to '削除する', company_path(@company.id), method: :delete %>
+<div class="btn-lists">
+  <div class="register-btn">
+    <%= link_to '編集する', edit_company_path(@company.id), class: "edit-blue-btn", method: :get %>
+  </div>
+  <div class="register-btn">
+    <%= link_to '削除する', company_path(@company.id), class: "delete-blue-btn", method: :delete %>
+  </div>
+</div>
 
-<%= form_with model: [@company, @comment], local: true do |f| %>
-  <%= f.text_area :text, placeholder: "コメントする", rows: "2" %>
-  <%= f.submit "送信する" %>
-<% end %>
-<p>コメント一覧</p>
-<% @comments.each do |comment| %>
-  <%= comment.text %>
-<% end %>
+  <div class="register-btn">
+    <%= link_to "もどる", root_path, class: "back-blue-btn" %>
+  </div>
+
+<h2>コメント一覧</h2> 
+<div class="box">
+  <div class="comment-box">
+    <% @comments.each do |comment| %>
+      <p><%= comment.text %></p>
+    <% end %>
+  </div>
+</div>
+
+<div class="container">
+  <%= form_with model: [@company, @comment], local: true do |f| %>
+    <div class="form-group">
+      <%= f.text_area :text, placeholder: "コメントを記入してください", rows: "4", class: "comments-text" %>
+    </div>
+    <div class="register-btn">
+    <%= f.submit "送信する", class: "register-blue-btn" %>
+    </div>
+  <% end %>
+</div>
+
 
 <%= render "shared/footer" %>

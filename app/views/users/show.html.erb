@@ -1,14 +1,30 @@
-マイページ
+<%= render "shared/header" %>
 
-<%= link_to "もどる", root_path %>
+<h2>マイページ</h2>
+<div class="box">
+  <div class="company-box">
+    <table>
+      <tr>
+      <th>ニックネーム</th>
+        <td><%= @user.nickname %></td>
+      </tr>
+      <tr>
+      <th>Eメール</th>
+        <td><%= @user.email %></td>
+      </tr>
+    </table>
+  </div>
+</div>
 
-<ul>
-  <li><%= @user.nickname %></li>
-  <li><%= @user.email %></li>
-</ul>
 
-<p id="notice"><%= notice %></p>
+<h2>カテゴリー別集計</h2>
 
-<h1>カテゴリー別集計</h1>
-
+<div class="pie-chart">
 <%= pie_chart @category_graph_data %>
+</div>
+
+<div class="register-btn">
+    <%= link_to "もどる", root_path, class: "back-blue-btn" %>
+</div>
+
+<%= render "shared/footer" %>

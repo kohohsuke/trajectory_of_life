@@ -17,12 +17,19 @@
 1. 会員情報登録ページから新規登録・ログイン
 2. 一覧ページへ遷移する
 3. 新規投稿は右上の投稿ボタンをクリック
+[![Image from Gyazo](https://i.gyazo.com/36946cc3a941a925b72c607f34f1e952.gif)](https://gyazo.com/36946cc3a941a925b72c607f34f1e952)
 4. 投稿完了後は一覧ページへ戻る
+[![Image from Gyazo](https://i.gyazo.com/874a03f88158a1fd406ba2b6bad606b5.gif)](https://gyazo.com/874a03f88158a1fd406ba2b6bad606b5)
 5. 一覧ページから一つの投稿を選択 → 投稿詳細ページへ遷移する
+[![Image from Gyazo](https://i.gyazo.com/f7ef9f079f52eb880cb0b54b39462f76.gif)](https://gyazo.com/f7ef9f079f52eb880cb0b54b39462f76)
 6. 投稿詳細ページからは投稿の編集・削除が可能である
+[![Image from Gyazo](https://i.gyazo.com/11976cee20f0c70d1ba28d862137da17.gif)](https://gyazo.com/11976cee20f0c70d1ba28d862137da17)
+[![Image from Gyazo](https://i.gyazo.com/88098ca847c0801fe635051d5e0808f3.gif)](https://gyazo.com/88098ca847c0801fe635051d5e0808f3)
 7. 投稿詳細ページからコメントができる
+[![Image from Gyazo](https://i.gyazo.com/5ef5f57695b3887d768d1ab2eed467d3.gif)](https://gyazo.com/5ef5f57695b3887d768d1ab2eed467d3)
 8. 一覧ページから右上のユーザー名をクリックすることでマイページに遷移できる
 9. マイページではユーザー情報と投稿のカテゴリー別集計を円グラフで確認することができる
+[![Image from Gyazo](https://i.gyazo.com/737dae8f5dfb48a920ae93c0d67a6468.gif)](https://gyazo.com/737dae8f5dfb48a920ae93c0d67a6468)
 
 # 課題解決
 
@@ -45,13 +52,13 @@
 
 # ローカルでの動作方法
 
-$ git clone https://github.com/kohohsuke/trajectory_of_life.git
-$ cd trajectory_of_life
-$ bundle install
-$ rails db:create
-$ rails db:migrate
-$ rails s
-http://localhost:3000/
+- $ git clone https://github.com/kohohsuke/trajectory_of_life.git
+- $ cd trajectory_of_life
+- $ bundle install
+- $ rails db:create
+- $ rails db:migrate
+- $ rails s
+- http://localhost:3000/
 
 # 開発環境
 

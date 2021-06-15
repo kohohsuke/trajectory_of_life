@@ -5,8 +5,10 @@
 <div class="box">
   <div class="box2">
     <% @companies.each do |company| %>
-      <%= link_to company_path(company.id) do%>
-        <p><%= company.name %></p>
+      <% if user_signed_in? && current_user.id == company.user.id %>
+        <%= link_to company_path(company.id) do%>
+          <p><%= company.name %></p>
+        <% end %>
       <% end %>
     <% end %>
   </div>

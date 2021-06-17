@@ -65,7 +65,7 @@
 
 <h2>コメント一覧</h2> 
 <div class="box">
-  <div class="comment-box">
+  <div class="comment-box", id="comments">
     <% @comments.each do |comment| %>
       <p><%= comment.text %></p>
     <% end %>
@@ -73,7 +73,7 @@
 </div>
 
 <div class="container">
-  <%= form_with model: [@company, @comment], local: true do |f| %>
+  <%= form_with model: [@company, @comment] do |f| %>
     <div class="form-group">
       <%= f.text_area :text, placeholder: "コメントを記入してください", rows: "4", class: "comments-text" %>
     </div>

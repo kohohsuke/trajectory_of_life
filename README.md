@@ -26,7 +26,7 @@
 [![Image from Gyazo](https://i.gyazo.com/11976cee20f0c70d1ba28d862137da17.gif)](https://gyazo.com/11976cee20f0c70d1ba28d862137da17)
 [![Image from Gyazo](https://i.gyazo.com/88098ca847c0801fe635051d5e0808f3.gif)](https://gyazo.com/88098ca847c0801fe635051d5e0808f3)
 7. 投稿詳細ページからコメントができる
-[![Image from Gyazo](https://i.gyazo.com/5ef5f57695b3887d768d1ab2eed467d3.gif)](https://gyazo.com/5ef5f57695b3887d768d1ab2eed467d3)
+[![Image from Gyazo](https://i.gyazo.com/924d55339117d4853dadea609b500232.gif)](https://gyazo.com/924d55339117d4853dadea609b500232)
 8. 一覧ページから右上のユーザー名をクリックすることでマイページに遷移できる
 9. マイページではユーザー情報と投稿のカテゴリー別集計を円グラフで確認することができる
 [![Image from Gyazo](https://i.gyazo.com/737dae8f5dfb48a920ae93c0d67a6468.gif)](https://gyazo.com/737dae8f5dfb48a920ae93c0d67a6468)
@@ -48,7 +48,7 @@
 | 投稿詳細表示機能 | 各投稿詳細が詳細ページで閲覧が可能 |
 | 投稿編集・削除機能 | 投稿者本人のみ投稿編集・削除が可能 |
 | ユーザー詳細表示機能 | 各ユーザーのプロフィール・カテゴリー別集計の閲覧が可能 |
-| コメント機能 | 投稿詳細ページからコメントが可能 |
+| コメント機能 | 投稿詳細ページから非同期通信でコメントが可能 |
 
 # ローカルでの動作方法
 
@@ -66,6 +66,7 @@
 - Ruby 2.6.5
 - Rails 6.0.0
 - MySQL2 0.4.4
+- JavaScript
 
 # DB設計
 

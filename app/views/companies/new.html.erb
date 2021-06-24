@@ -8,73 +8,73 @@
   <%= render 'layouts/error_messages', model: @company %>
 
     <div class="form-text-wrap">
-        <label class="form-text">会社名</label>
+        <label class="form-text" for="company_name">会社名</label>
     </div>
     <div class="form-group">
-      <%= f.text_field :name, placeholder: "例）株式会社hoge", class: "field" %>
+      <%= f.text_field :name, placeholder: "例）株式会社hoge", class: "field", id: "company_name" %>
     </div>
 
     <div class="form-text-wrap">
-      <label class="form-text">郵便番号</label>
+      <label class="form-text" for="company_post_code">郵便番号</label>
     </div>
     <div class="form-group">
-      <%= f.text_field :post_code, placeholder: "(000-0000)", class: "field" %>
+      <%= f.text_field :post_code, placeholder: "(000-0000)", class: "field", id: "company_post_code" %>
     </div>
 
     <div class="form-text-wrap">
-      <label class="form-text">本社所在地</label>
+      <label class="form-text" for="company_address">本社所在地</label>
     </div>
     <div class="form-group">
-      <%= f.text_field :address, placeholder: "例）東京都千代田区千代田1-1", class: "field" %>
+      <%= f.text_field :address, placeholder: "例）東京都千代田区千代田1-1", class: "field", id: "company_address" %>
     </div>
 
     <div class="form-text-wrap">
-      <label class="form-text">ホームページのURL</label>
+      <label class="form-text" for="company_website">ホームページのURL</label>
     </div>
     <div class="form-group">
-      <%= f.text_field :website, placeholder: "例）http://~~~~", class: "field" %>
+      <%= f.text_field :website, placeholder: "例）http://~~~~", class: "field", id: "company_website" %>
     </div>
 
     <div class="form-text-wrap">
-      <label class="form-text">カテゴリー</label>
+      <label class="form-text" for="company_category_id">カテゴリー</label>
     </div>
     <div class="form-group">
-      <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class: "field"}) %>
+      <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class: "field", id: "company_category_id"}) %>
     </div>
 
     <div class="form-text-wrap">
-      <label class="form-text">職種</label>
+      <label class="form-text" for="company_occupation_id">職種</label>
     </div>
     <div class="form-group">
-      <div><%= f.collection_select(:occupation_id, Occupation.all, :id, :name, {}, {class: "field"}) %></div>
+      <div><%= f.collection_select(:occupation_id, Occupation.all, :id, :name, {}, {class: "field", id: "company_occupation_id"}) %></div>
     </div>
 
     <div class="form-text-wrap">
-      <label class="form-text">特徴</label>
+      <label class="form-text" for="company_characteristic">特徴</label>
     </div>
     <div class="form-group">
-      <div><%= f.text_area :characteristic, rows: 7, maxlength: "1000", placeholder: "特徴を記入してください", class: "companies-text" %></div>
+      <div><%= f.text_area :characteristic, rows: 7, maxlength: "1000", placeholder: "特徴を記入してください", class: "companies-text", id: "company_characteristic" %></div>
     </div>
 
     <div class="form-text-wrap">
-      <label class="form-text">理由①</label>
+      <label class="form-text" for="company_first_reason">理由①</label>
     </div>
     <div class="form-group">
-      <div><%= f.text_field :first_reason, placeholder: "例）福利厚生が整っている", class: "field" %></div>
+      <div><%= f.text_field :first_reason, placeholder: "例）福利厚生が整っている", class: "field", id: "company_first_reason" %></div>
     </div>
 
     <div class="form-text-wrap">
-      <label class="form-text">理由②</label>
+      <label class="form-text" for="company_second_reason">理由②</label>
     </div>
     <div class="form-group">
-      <div><%= f.text_field :second_reason, placeholder: "例）給料が良い", class: "field" %></div>
+      <div><%= f.text_field :second_reason, placeholder: "例）給料が良い", class: "field", id: "company_second_reason" %></div>
     </div>
 
     <div class="form-text-wrap">
-      <label class="form-text">理由③</label>
+      <label class="form-text" for="company_therd_reason">理由③</label>
     </div>
     <div class="form-group">
-      <div><%= f.text_field :third_reason, placeholder: "例）社風に共感できる", class: "field" %></div>
+      <div><%= f.text_field :third_reason, placeholder: "例）社風に共感できる", class: "field", id: "company_therd_reason" %></div>
     </div>
 
     <div class="register-btn">

@@ -50,3 +50,35 @@ RSpec.describe "会社情報投稿", type: :system do
     end
   end
 end
+
+RSpec.describe "会社詳細", type: :system do
+  before do
+    @company = FactoryBot.create(:company)
+  end
+
+  it 'ログインしたユーザーは会社詳細ページに遷移してコメント投稿欄が表示される' do
+    # ログインする
+    visit user_session_path
+    fill_in 'Eメール', with: @company.user.email
+    fill_in 'パスワード', with: @company.user.password
+    find('input[name="commit"]').click
+    expect(current_path).to eq root_path
+    # 投稿に詳細ページへのリンクがあることを確認する
+    expect(
+      all('.box2')[0]
+    ).to have_link @company.name, href: company_path(@company)
+    # 詳細ページに遷移する
+    visit company_path(@company)
+    # 詳細ページに投稿の内容が含まれる
+    expect(page).to have_content(@company.name)
+    # コメント用のフォームが存在する
+    expect(page).to have_selector 'form'
+  end
+
+  it 'ログインしていないユーザーはサインインページに遷移する' do
+    # 詳細ページに移動する
+    visit company_path(@company)
+    # サインインページに遷移することを確認する
+    expect(current_path).to eq(user_session_path)
+  end
+end

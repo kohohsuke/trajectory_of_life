@@ -82,3 +82,65 @@ RSpec.describe "会社詳細", type: :system do
     expect(current_path).to eq(user_session_path)
   end
 end
+
+RSpec.describe '会社情報編集' do
+  before do
+    @company1 = FactoryBot.create(:company)
+    @company2 = FactoryBot.create(:company)
+  end
+
+  context '会社情報が編集できるとき'do
+    it 'ログインしたユーザーは自分が投稿した会社情報の編集ができる' do
+      # 会社情報1を投稿したユーザーでログインする
+      visit user_session_path
+      fill_in 'Eメール', with: @company1.user.email
+      fill_in 'パスワード', with: @company1.user.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq root_path
+      # 会社情報1の詳細ページへのリンクが存在する
+      expect(
+        all('.box2')[0]
+      ).to have_link @company1.name, href: company_path(@company1)
+      # 詳細ページへ遷移する
+      visit company_path(@company1)
+      # 編集ページへのボタンがあることを確認する
+      expect(page).to have_content('編集')
+      # 編集ページへ遷移する
+      visit edit_company_path(@company1)
+      # すでに投稿済みの内容がフォームに入っていることを確認する
+      expect(
+        find('#company_name').value
+      ).to eq(@company1.name)
+      # 投稿内容を編集する
+      fill_in '会社名', with: "#{@company1.name}+編集した会社名"
+      # 編集してもCompanyモデルのカウントは変わらないことを確認する
+      expect{
+        find('input[name="commit"]').click
+      }.to change { Company.count }.by(0)
+      # 会社情報1の詳細ページに遷移することを確認する
+      expect(current_path).to eq company_path(@company1)
+      # トップページには先ほど投稿した内容の会社名が存在することを確認する
+      expect(page).to have_content("#{@company1.name}+編集した会社名")
+    end
+  end
+
+  context '会社情報が編集できないとき' do
+    it 'ログインしたユーザーは自分以外が投稿した会社情報の編集画面には遷移できない' do
+      # 会社情報1を投稿したユーザーでログインする
+      visit user_session_path
+      fill_in 'Eメール', with: @company1.user.email
+      fill_in 'パスワード', with: @company1.user.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq root_path
+      # トップページに会社情報2の会社名が存在しないことを確認する
+      expect(page).to have_no_content(@company2.name)
+    end
+
+    it 'ログインしていないユーザーはサインインページに遷移する' do
+      # 編集ページに移動する
+      visit edit_company_path(@company1)
+      # サインインページに遷移することを確認する
+      expect(current_path).to eq(user_session_path)
+    end
+  end
+end

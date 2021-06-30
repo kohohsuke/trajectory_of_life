@@ -104,7 +104,7 @@ RSpec.describe '会社情報編集' do
       # 詳細ページへ遷移する
       visit company_path(@company1)
       # 編集ページへのボタンがあることを確認する
-      expect(page).to have_content('編集')
+      expect(page).to have_content('編集する')
       # 編集ページへ遷移する
       visit edit_company_path(@company1)
       # すでに投稿済みの内容がフォームに入っていることを確認する
@@ -139,6 +139,60 @@ RSpec.describe '会社情報編集' do
     it 'ログインしていないユーザーはサインインページに遷移する' do
       # 編集ページに移動する
       visit edit_company_path(@company1)
+      # サインインページに遷移することを確認する
+      expect(current_path).to eq(user_session_path)
+    end
+  end
+end
+
+RSpec.describe '会社情報削除', type: :system do
+  before do
+    @company1 = FactoryBot.create(:company)
+    @company2 = FactoryBot.create(:company)
+  end
+
+  context '会社情報が削除できるとき' do
+    it 'ログインしたユーザーは自らが投稿した会社情報を削除できる' do
+      # 会社情報1を投稿したユーザーでログインする
+      visit user_session_path
+      fill_in 'Eメール', with: @company1.user.email
+      fill_in 'パスワード', with: @company1.user.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq root_path
+      # 会社情報1の詳細ページへのリンクが存在する
+      expect(
+        all('.box2')[0]
+      ).to have_link @company1.name, href: company_path(@company1)
+      # 詳細ページへ遷移する
+      visit company_path(@company1)
+      # 詳細ページに削除へのリンクがあることを確認する
+      expect(page).to have_content('削除する')
+      # 会社情報を削除するとレコードの数が1減ることを確認する
+      expect{
+        find_link('削除する', href: company_path(@company1)).click
+      }.to change { Company.count }.by(-1)
+      # トップページに遷移することを確認する
+      expect(current_path).to eq(root_path)
+      # トップページに会社情報1の会社名が存在しないことを確認する
+      expect(page).to have_no_content(@company1.name)
+    end
+  end
+
+  context '会社情報が削除できないとき' do
+    it 'ログインしたユーザーは自分以外が投稿した会社情報を削除できない' do
+      # 会社情報1を投稿したユーザーでログインする
+      visit user_session_path
+      fill_in 'Eメール', with: @company1.user.email
+      fill_in 'パスワード', with: @company1.user.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq root_path
+      # トップページに会社情報2の会社名が存在しないことを確認する
+      expect(page).to have_no_content(@company2.name)
+    end
+
+    it 'ログインしていないユーザーはサインインページに遷移する' do
+      # 詳細ページに移動する
+      visit company_path(@company1)
       # サインインページに遷移することを確認する
       expect(current_path).to eq(user_session_path)
     end

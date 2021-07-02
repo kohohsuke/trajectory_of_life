@@ -91,3 +91,44 @@ RSpec.describe 'ログイン', type: :system do
     end
   end
 end
+
+RSpec.describe 'マイページ', type: :system do
+  before do
+    @user = FactoryBot.create(:user)
+  end
+
+  context '詳細ページへ遷移できるとき' do
+    it 'ログインしたユーザーはマイページへ遷移することができる' do
+      # サインインページへ遷移する
+      visit user_session_path
+      # 正しいユーザー情報を入力する
+      fill_in 'Eメール', with: @user.email
+      fill_in 'パスワード', with: @user.password
+      # サインインボタンを押す
+      find('input[name="commit"]').click
+      # トップページへ遷移することを確認する
+      expect(current_path).to eq(root_path)
+      # トップページにログアウトボタンが表示されることを確認する
+      expect(page).to have_content('ログアウト')
+      # トップページに投稿ボタンが表示されることを確認する
+      expect(page).to have_content('投稿')
+      # トップページにマイページへのリンクがあることを確認する
+      expect(page).to have_content(@user.nickname)
+      # マイページボタンをクリックする
+      find_link(@user.nickname, href: user_path(@user)).click
+      # マイページへ遷移したことを確認する
+      expect(current_path).to eq(user_path(@user))
+      # マイページにユーザー名が表示されていることを確認する
+      expect(page).to have_content(@user.nickname)
+    end
+  end
+
+  context '詳細ページへ遷移できないとき' do
+    it 'ログインしていないユーザーはサインインページへ遷移する' do
+      # マイページへ遷移する
+      visit user_path(@user)
+      # サインインページへ遷移することを確認する
+      expect(current_path).to eq(user_session_path)
+    end
+  end
+end
